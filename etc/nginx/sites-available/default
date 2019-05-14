@@ -23,8 +23,8 @@ server {
         #real_ip_header    X-Forwarded-For;
         #real_ip_recursive on;
 
-        listen 80 default_server;
-        listen [::]:80 default_server ipv6only=on;
+        listen 2000;
+        listen [::]:2000 ipv6only=on;
 
         add_header Cache-Control "no-cache,no-store,must-revalidate"; 
         add_header Pragma "no-cache"; 
@@ -34,20 +34,20 @@ server {
         gzip            on;
         gzip_min_length 20;
         gzip_proxied    expired no-cache no-store private auth;
-        gzip_types      text/plain application/xml application/x-javascript application/javascript text/css text/javascript text/html application/json;
+        gzip_types      text/plain application/xml application/x-javascript application/javascript text/css text/javascript application/json;
 
         # Make site accessible from http://localhost/
-        server_name localhost;
+        server_name api;
 
         ##############
         #### Update the two entries below and replace 'myUser' with the user omniwallet is installed under
         ##############
 
         ## Set this to reflect the location of the www directory within the omniapi repo.
-        root /home/ubuntu/omniapi/www/;
+        root /root/omniapi/;
         index index.htm index.html;
 
         ## Set this to reflect the location of the omni-redirects file within the omniwallet repo
-        include /home/ubuntu/omniapi/etc/nginx/sites-available/omni-redirects;
+        include /root/omniapi/etc/nginx/sites-available/omni-redirects;
 
 }
